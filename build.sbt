@@ -42,9 +42,7 @@ lazy val root = (project in file(".")).settings(
     case PathList("com", "fasterxml", "jackson", "annotation", _ @_*) => MergeStrategy.first
     case PathList("com", "fasterxml", "jackson", "core", _ @_*)       => MergeStrategy.first
     case PathList("com", "fasterxml", "jackson", "databind", _ @_*)   => MergeStrategy.first
-    case x =>
-      val oldStrategy = (assemblyMergeStrategy in assembly).value
-      oldStrategy(x)
+    case x => MergeStrategy.first
   },
   // uses compile classpath for the run task, including "provided" jar (cf http://stackoverflow.com/a/21803413/3827)
   run in Compile := Defaults
